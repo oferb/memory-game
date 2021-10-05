@@ -8,10 +8,10 @@
 }
 
 .Card-image {
-    display: none;
+    visibility: hidden;
     width: 100%;
 }
 
 .Card-image.show {
-    display: unset;
+    visibility: unset;
 }

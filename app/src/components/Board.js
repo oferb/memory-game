@@ -11,6 +11,8 @@ class Board extends Component {
         this.state = {
             cards: this.getInitialCards()
         }
+        this.shown = [];
+        this.disabled = false;
     }
 
     shuffle(array) {
@@ -36,18 +38,64 @@ class Board extends Component {
         cardNames.forEach((image) => {
             cards.push({
                 image: image,
-                show: true
+                show: false
             });
         });
         return cards;
     }
 
-    onClick(i) {
+    onClick(selected) {
+        if (this.disabled) {
+            return;
+        }
+
         let cards = this.state.cards;
-        cards[i].show = !cards[i].show;
+        if (cards[selected].show) {
+            return;
+        }
+        if (this.shown.length) {
+            this.startTimer();
+            this.disabled = true;
+        }
+        cards[selected].show = !cards[selected].show;
+        this.shown.push(selected);
+
         this.setState(() => ({
             cards: cards
         }));
+        if (this.isGameDone()) {
+            console.log("You won!");
+        }
+    }
+
+    startTimer() {
+        this.timer = setInterval(() => this.clearShownCards(), 1000);
+    }
+
+    isCardsEqual() {
+        if (this.shown.length < 2) {
+            return false;
+        }
+        const card1Image = this.state.cards[this.shown[0]].image;
+        const card12mage = this.state.cards[this.shown[1]].image;
+        return card1Image === card12mage;
+    }
+
+    clearShownCards() {
+        let cards = this.state.cards;
+        if (!this.isCardsEqual()) {
+            this.shown.forEach((i) => cards[i].show = false);
+        }
+        this.shown = [];
+        this.setState(() => ({
+            cards: cards
+        }));
+        clearInterval(this.timer);
+        this.disabled = false;
+    }
+
+    isGameDone() {
+        return this.state.cards.every(card => card.show)
     }
 
     reset() {
