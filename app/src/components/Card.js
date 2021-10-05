@@ -27,7 +27,7 @@ const images = {
 class Card extends Component {
   render() {
     const className = !!this.props.show ? "Card-image show" : "Card-image";
-    return <div className="Card">
+    return <div className="Card" onClick={this.props.clickHandler}>
         <img className={className} src={images[this.props.image]} alt="Pineapple"></img>
     </div>;
   }
