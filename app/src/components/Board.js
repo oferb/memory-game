@@ -23,7 +23,7 @@ class Board extends Component {
         cards[i].show = !cards[i].show;
         this.setState(() => ({
             cards: cards
-          }));
+        }));
     }
 
     render() {
