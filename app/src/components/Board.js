@@ -3,19 +3,43 @@ import './Board.css';
 import Card from './Card';
 import { IMAGE_NAMES } from './Card';
 
+const CARD_COUNT = 12;
+
 class Board extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            cards: this.getInitialCards()
+        }
+    }
+
+    shuffle(array) {
+        let currentIndex = array.length, randomIndex;
+        // While there remain elements to shuffle...
+        while (currentIndex !== 0) {
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+          // And swap it with the current element.
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+        return array;
+    }
+
+    getInitialCards() {
         let cards = [];
-        IMAGE_NAMES.forEach((image) => {
+        let cardNames = this.shuffle(IMAGE_NAMES);
+        cardNames = cardNames.slice(0, CARD_COUNT/2);
+        cardNames = this.shuffle(cardNames.concat(cardNames));
+
+        cardNames.forEach((image) => {
             cards.push({
                 image: image,
                 show: true
             });
         });
-        this.state = {
-            cards: cards,
-        };
+        return cards;
     }
 
     onClick(i) {
