@@ -15,3 +15,9 @@
 .Card-image.show {
     visibility: unset;
 }
+
+@media screen and (max-width: 600px) {
+    .Card {
+        padding: 10px;
+    }
+}

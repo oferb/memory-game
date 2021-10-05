@@ -10,6 +10,26 @@
   margin-top: 10px;
 }
 
+.App-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-timer {
+  padding-bottom: 15px;
+  margin-left: 40px;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.App-guesses {
+  padding-bottom: 15px;
+  margin-left: 40px;
+  font-weight: 700;
+  font-size: 25px;
+}
+
 .App-header button{
   border-radius: 6px;
   border: 0;
@@ -23,5 +43,15 @@
 @media screen and (max-width: 600px) {
   .App-title {
     font-size: 30px;
+  }
+
+  .App-timer {
+    margin-left: 30px;
+    font-size: 20px;
+  }
+  
+  .App-guesses {
+    margin-left: 30px;
+    font-size: 20px;
   }
 }

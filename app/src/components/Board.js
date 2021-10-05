@@ -16,6 +16,7 @@ class Board extends Component {
         }
         this.shown = [];
         this.disabled = false;
+        this.guessCount = 0;
     }
 
     shuffle(array) {
@@ -59,6 +60,8 @@ class Board extends Component {
         if (this.shown.length) {
             this.startTimer();
             this.disabled = true;
+            this.guessCount++;
+            this.props.onGuess(this.guessCount);
         }
         cards[selected].show = !cards[selected].show;
         this.shown.push(selected);
@@ -67,6 +70,7 @@ class Board extends Component {
             cards: cards
         }));
         if (this.isGameDone()) {
+            this.props.onGameWon();
             this.showWinModal(true);
         }
     }
@@ -116,6 +120,8 @@ class Board extends Component {
         this.setState(() => ({
             cards: this.getInitialCards()
         }));
+        this.guessCount = 0;
+        this.props.onGameReset();
     }
 
     render() {
