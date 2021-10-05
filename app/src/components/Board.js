@@ -60,7 +60,7 @@ class Board extends Component {
                 key={i}>
             </Card>)
         });
-        return <div className="Board">{cards}</div>;
+        return <div className="Board-container"><div className="Board">{cards}</div></div>  ;
     }
 }
 
