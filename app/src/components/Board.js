@@ -50,6 +50,12 @@ class Board extends Component {
         }));
     }
 
+    reset() {
+        this.setState(() => ({
+            cards: this.getInitialCards()
+        }));
+    }
+
     render() {
         let cards = [];
         this.state.cards.forEach((card, i) => {
