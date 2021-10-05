@@ -8,6 +8,11 @@
     box-sizing:border-box;
 }
 
-.Card img {
+.Card-image {
+    display: none;
     width: 100%;
+}
+
+.Card-image.show {
+    display: unset;
 }
